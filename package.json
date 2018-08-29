@@ -1,0 +1,13 @@
+{
+  "name": "skrill-spike",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/spike.js",
+  "scripts": {
+    "serve": "node src/spike.js"
+  },
+  "dependencies": {
+    "superagent": "^3.8.3",
+    "express": "^4.16.3"
+  }
+}
