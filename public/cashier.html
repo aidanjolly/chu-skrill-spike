@@ -12,8 +12,15 @@
         width: 200px;
         margin: 5px;
     }
+
     .skrill {
         color: #913573;
+        margin-top: 0;
+        margin-bottom: 3%;
+    }
+
+    .neteller {
+        color: #83ba3b;
         margin-top: 0;
         margin-bottom: 3%;
     }
@@ -23,6 +30,12 @@
     <p>Hi K,</p>
     <form name="purchase_request" action="/purchase/skrill" method="post" enctype="application/x-www-form-urlencoded">
         <p>Purchase 250,000 Gold + $5.00 worth of Sweeps via your <span class="skrill">Skrill Digital Wallet</span>!</p>
+        <input class="button" type="submit" value="Buy Now"> <br>
+    </form>
+    <br>
+    <form name="purchase_request" action="/purchase/neteller" method="post" enctype="application/x-www-form-urlencoded">
+
+        <p>Purchase 250,000 Gold + $5.00 worth of Sweeps via your <span class="neteller">Neteller Digital Wallet</span>!</p>
         <input class="button" type="submit" value="Buy Now">
     </form>
 </body>

@@ -9,11 +9,11 @@ app.post('/purchase/skrill', async (req, res) => {
 
     try {
         const result = await superagent.post('https://pay.skrill.com')
-            .send('pay_to_email=' + MERCHANT_EMAIL)
+            .send(`pay_to_email=${MERCHANT_EMAIL}`)
             .send('amount=8.00')
             .send('currency=USD')
             .send('language=EN')
-            .send('payment_type=WLT')
+            .send('payment_methods=WLT')
             .send('prepare_only=1')
             .send('return_url=https://casino-devb.dev.chumbacasino.com/')
             .send('return_url_text=Back to Chumba Casino Lobby!')
@@ -29,7 +29,35 @@ app.post('/purchase/skrill', async (req, res) => {
         res.redirect(`https://pay.skrill.com/?sid=${sid}`);
     }
     catch (err) {
-        console.error("Skrill prepare failed", err)
+        console.error("Skrill prepare_only failed", err)
+    }    
+});
+
+app.post('/purchase/neteller', async (req, res) => {
+
+    try {
+        const result = await superagent.post('https://pay.skrill.com')
+            .send('pay_to_email=Netellerevaluation-chu-3@vgw.co')
+            .send('amount=10.00')
+            .send('currency=USD')
+            .send('language=EN')
+            .send('payment_methods=NTL')
+            .send('prepare_only=1')
+            .send('return_url=https://casino-devb.dev.chumbacasino.com/')
+            .send('return_url_text=Back to Chumba Casino Lobby!')
+            .send(`status_url=https://requestbin.vgwholdings.net/${process.env.BIN_NUMBER}`)
+            .send('neteller_account=netellerevaluation2@vgw.co')
+            .send('detail1_description=Description: ')
+            .send('detail1_text=Purchase 250,000 Gold + $5.00 worth of Sweeps')
+            .send('logo_url=https://d3e5cxfsrl1n2s.cloudfront.net/build/master-1321/casino_vue/images/desktop/logo.png')
+            .send('dynamic_descriptor=Chumba Casino');
+
+        const sid = result.text;
+        console.log('sid', sid)
+        res.redirect(`https://pay.skrill.com/?sid=${sid}`);
+    }
+    catch (err) {
+        console.error("Neteller prepare only failed", err)
     }    
 });
 
